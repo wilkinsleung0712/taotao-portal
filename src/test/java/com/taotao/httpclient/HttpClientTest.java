@@ -21,95 +21,92 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 public class HttpClientTest {
-    @Test
-    public void testGetUrl() {
+	@Test
+	public void testGetUrl() {
 
-        try {
-            // 创建一个httpclient对象
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            // 创建一个GET对象
-            HttpGet httpget = new HttpGet("http://www.google.com.au");
-            // 执行请求
-            CloseableHttpResponse response = httpClient.execute(httpget);
-            // 取响应的结果
-            System.out.println("Executing request " + httpget.getRequestLine());
-            int statusCode = response.getStatusLine().getStatusCode();
-            System.out.println(statusCode);
-            HttpEntity entity = response.getEntity();
-            String string = EntityUtils.toString(entity, "utf-8");
-            System.out.println(string);
-            // 关闭httpclient
-            response.close();
-            httpClient.close();
+		try {
+			// 创建一个httpclient对象
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+			// 创建一个GET对象
+			HttpGet httpget = new HttpGet("http://www.google.com.au");
+			// 执行请求
+			CloseableHttpResponse response = httpClient.execute(httpget);
+			// 取响应的结果
+			System.out.println("Executing request " + httpget.getRequestLine());
+			int statusCode = response.getStatusLine().getStatusCode();
+			System.out.println(statusCode);
+			HttpEntity entity = response.getEntity();
+			String string = EntityUtils.toString(entity, "utf-8");
+			System.out.println(string);
+			// 关闭httpclient
+			response.close();
+			httpClient.close();
 
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    @Test
-    public void doRequestWithParam()
-            throws URISyntaxException, ClientProtocolException, IOException {
-        CloseableHttpClient client = HttpClients.createDefault();
-        // 创建一个uri对象
-        URIBuilder uriBuilder = new URIBuilder("http://www.sogou.com/web");
-        uriBuilder.addParameter("query", "花千骨");
-        HttpGet get = new HttpGet(uriBuilder.build());
-        // 执行请求
-        CloseableHttpResponse response = client.execute(get);
-        // 取响应的结果
-        int statusCode = response.getStatusLine().getStatusCode();
-        System.out.println(statusCode);
-        HttpEntity entity = response.getEntity();
-        String string = EntityUtils.toString(entity, "utf-8");
-        System.out.println(string);
-        // 关闭client
-        response.close();
-        client.close();
-    }
+	@Test
+	public void doRequestWithParam() throws URISyntaxException, ClientProtocolException, IOException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		// 创建一个uri对象
+		URIBuilder uriBuilder = new URIBuilder("http://www.sogou.com/web");
+		uriBuilder.addParameter("query", "花千骨");
+		HttpGet get = new HttpGet(uriBuilder.build());
+		// 执行请求
+		CloseableHttpResponse response = client.execute(get);
+		// 取响应的结果
+		int statusCode = response.getStatusLine().getStatusCode();
+		System.out.println(statusCode);
+		HttpEntity entity = response.getEntity();
+		String string = EntityUtils.toString(entity, "utf-8");
+		System.out.println(string);
+		// 关闭client
+		response.close();
+		client.close();
+	}
 
-    @Test
-    public void doPostRequest() throws ClientProtocolException, IOException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        // 创建一个post对象
-        HttpPost post = new HttpPost(
-                "http://localhost:8082/httpclient/post.html");
-        // 执行post请求
-        CloseableHttpResponse response = httpClient.execute(post);
-        String string = EntityUtils.toString(response.getEntity());
-        System.out.println(string);
-        response.close();
-        httpClient.close();
+	@Test
+	public void doPostRequest() throws ClientProtocolException, IOException {
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		// 创建一个post对象
+		HttpPost post = new HttpPost("http://localhost:8082/httpclient/post.html");
+		// 执行post请求
+		CloseableHttpResponse response = httpClient.execute(post);
+		String string = EntityUtils.toString(response.getEntity());
+		System.out.println(string);
+		response.close();
+		httpClient.close();
 
-    }
+	}
 
-    @Test
-    public void doPostRequestWithParam() throws Exception {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        // 创建一个post对象
-        HttpPost post = new HttpPost(
-                "http://localhost:8082/httpclient/post.html");
-        // 创建一个Entity。模拟一个表单
-        List<NameValuePair> kvList = new ArrayList<>();
-        kvList.add(new BasicNameValuePair("username", "zhangsan"));
-        kvList.add(new BasicNameValuePair("password", "123"));
+	@Test
+	public void doPostRequestWithParam() throws Exception {
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		// 创建一个post对象
+		HttpPost post = new HttpPost("http://localhost:8082/httpclient/post.html");
+		// 创建一个Entity。模拟一个表单
+		List<NameValuePair> kvList = new ArrayList<>();
+		kvList.add(new BasicNameValuePair("username", "zhangsan"));
+		kvList.add(new BasicNameValuePair("password", "123"));
 
-        // 包装成一个Entity对象
-        StringEntity entity = new UrlEncodedFormEntity(kvList, "utf-8");
-        // 设置请求的内容
-        post.setEntity(entity);
+		// 包装成一个Entity对象
+		StringEntity entity = new UrlEncodedFormEntity(kvList, "utf-8");
+		// 设置请求的内容
+		post.setEntity(entity);
 
-        // 执行post请求
-        CloseableHttpResponse response = httpClient.execute(post);
-        String string = EntityUtils.toString(response.getEntity());
-        System.out.println(string);
-        response.close();
-        httpClient.close();
+		// 执行post请求
+		CloseableHttpResponse response = httpClient.execute(post);
+		String string = EntityUtils.toString(response.getEntity());
+		System.out.println(string);
+		response.close();
+		httpClient.close();
 
-    }
+	}
 
 }

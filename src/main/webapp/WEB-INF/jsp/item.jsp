@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>${item.title } - 淘淘</title>
+	<title>${item.item_title } - 淘淘</title>
 	<script>var jdpts = new Object(); jdpts._st = new Date().getTime();</script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="/css/taotao.css" media="all" />
@@ -47,7 +47,7 @@
 <div class="w">
 	<div id="product-intro" >
 		<div id="name">
-			<h1>${item.title }</h1>
+			<h1>${item.item_title }</h1>
 			<strong>${item.sellPoint}</strong>
 		</div><!--name end-->
 		<script type='text/javascript'>var warestatus = 1; var eleSkuIdKey =[];</script>
@@ -57,11 +57,11 @@
 	<li id="summary-price">
 		<div class="dt">淘&nbsp;淘&nbsp;价：</div>
 		<div class="dd">
-			<strong class="p-price"  id="jd-price">￥<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${item.price / 100 }"/> </strong>
+			<strong class="p-price"  id="jd-price">￥<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${item.item_price / 100 }"/> </strong>
 			<a id="notice-downp" href="#none" target="_blank" clstag="shangpin|keycount|product|jiangjia">(降价通知)</a>
 		</div>
 	</li>
-	<li id="summary-market"><div class="dt">商品编号：</div><div class="dd"><span>${item.id }</span></div></li>
+	<li id="summary-market"><div class="dt">商品编号：</div><div class="dd"><span>${item.item_id }</span></div></li>
 	<li id="summary-grade">
 		<div class="dt">商品评分：</div>
 		<div class="dd">
@@ -135,7 +135,7 @@
 		        <li id="choose-result"><div class="dt"></div><div class="dd"></div></li>
 				<li id="choose-btns">
 					<div id="choose-btn-append"  class="btn">
-							<a class="btn-append " id="InitCartUrl" href="/cart/add/${item.id}.html" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
+							<a class="btn-append " id="InitCartUrl" href="/cart/add/${item.item_id}.html" clstag="shangpin|keycount|product|initcarturl">加入购物车<b></b></a>
 					</div>
 					<div id="choose-btn-easybuy" class="btn"></div>
 					<div id="choose-btn-divide" class="btn"></div>
@@ -146,7 +146,7 @@
 		
 		<div id="preview">
 			<div id="spec-n1" class="jqzoom" clstag="shangpin|keycount|product|spec-n1">
-				<img data-img="1" width="350" height="350" src="${item.images[0]}" alt="${item.title}"  jqimg="${item.images[0]}"/>
+				<img data-img="1" width="350" height="350" src="${item.images[0]}" alt="${item.item_title}"  jqimg="${item.images[0]}"/>
 			</div>
 					
 			<div id="spec-list" clstag="shangpin|keycount|product|spec-n5">
@@ -158,12 +158,12 @@
 							<c:choose>
 								<c:when test="${status.index == 0 }">
 									<li>
-										<img data-img="1" class="img-hover"  alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
+										<img data-img="1" class="img-hover"  alt="${item.item_title}" src="${pic}" width="50" height="50" data-url="${pic}">
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li>
-										<img data-img="1" alt="${item.title}" src="${pic}" width="50" height="50" data-url="${pic}">
+										<img data-img="1" alt="${item.item_title}" src="${pic}" width="50" height="50" data-url="${pic}">
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -288,7 +288,7 @@
 	};
 	$(function(){
 		//取商品id
-		var itemId = "${item.id}";
+		var itemId = "${item.item_id}";
 		//给商品规格参数tab页绑定事件
 		$("#p-con-attr").bind("click", function(){
 			

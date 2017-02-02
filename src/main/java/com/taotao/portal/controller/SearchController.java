@@ -22,7 +22,7 @@ public class SearchController {
 
     @RequestMapping("/search")
     public String search(@RequestParam("q") String queryString,
-            @RequestParam(value = "pages", defaultValue = "0") Integer pages,
+            @RequestParam(value = "pages", defaultValue = "1") Integer pages,
             @RequestParam(value = "rows", defaultValue = "50") Integer rows, Model model) throws Exception {
 
         // 解决中文字符串乱码

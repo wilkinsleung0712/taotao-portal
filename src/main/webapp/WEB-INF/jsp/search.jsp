@@ -43,18 +43,18 @@
 <c:forEach items="${itemList}" var="item">
 <li class="item-book" bookid="11078102">
 	<div class="p-img">
-		<a target="_blank" href="/item/${item.item_id }.html">
-			<img width="160" height="160" data-img="1" data-lazyload="${item.item_image}" />
+		<a target="_blank" href="/item/${item.id }.html">
+			<img width="160" height="160" data-img="1" data-lazyload="${item.images[0]}" />
 		</a>
 	</div>
 	<div class="p-name">
-		<a target="_blank" href="/item/${item.item_id }.html">
-			${item.item_title}
+		<a target="_blank" href="/item/${item.id }.html">
+			${item.title}
 		</a>
 	</div>
 	<div class="p-price">
 		<i>淘淘价：</i>
-		<strong>￥<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${item.item_price / 100 }"/></strong>
+		<strong>￥<fmt:formatNumber groupingUsed="false" maxFractionDigits="2" minFractionDigits="2" value="${item.price / 100 }"/></strong>
 	</div>
 	<div class="service">由 淘淘 发货</div>
 	<div class="extra">

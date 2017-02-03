@@ -38,7 +38,7 @@ function renderAccordion(t) {
             return Math.random() - .5
         }), t.slice(0, e)
     }
-    for (var a = '{for item in data}<a target="_blank" class="fore${arguments[2]}" href="${item.href}">    <strong>${item.item_title}</strong>    <em>${item.desc}</em>    <img data-img="2" data-lazyload="${item.srcB}" alt="${item.alt}"></a>{/for}', n = 0; t.length > n; n++)
+    for (var a = '{for item in data}<a target="_blank" class="fore${arguments[2]}" href="${item.href}">    <strong>${item.title}</strong>    <em>${item.desc}</em>    <img data-img="2" data-lazyload="${item.srcB}" alt="${item.alt}"></a>{/for}', n = 0; t.length > n; n++)
         e(n, t[n].list);
     $.browser.msie && 9 >= parseInt($.browser.version, 10) ? setAccordion("#clothing .accordion") : $("#clothing .accordion").addClass("advanced"), $("#clothing .accordion .item a").each(function(t) {
         $(this).attr("clstag", "homepage|keycount|home2013|22c" + (t + 2))

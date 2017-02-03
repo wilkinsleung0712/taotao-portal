@@ -5,96 +5,152 @@ package com.taotao.portal.pojo;
  *
  */
 public class Item {
-	private String  item_id;
-	private String item_title;
-	private String item_sell_point;
-	private Long item_price;
-	private String item_image;
-	private String item_category_name;
-	private String item_des;
-	/**
-	 * @return the item_id
-	 */
-	public String getItem_id() {
-		return item_id;
-	}
-	/**
-	 * @param item_id the item_id to set
-	 */
-	public void setItem_id(String item_id) {
-		this.item_id = item_id;
-	}
-	/**
-	 * @return the item_title
-	 */
-	public String getItem_title() {
-		return item_title;
-	}
-	/**
-	 * @param item_title the item_title to set
-	 */
-	public void setItem_title(String item_title) {
-		this.item_title = item_title;
-	}
-	/**
-	 * @return the item_sell_point
-	 */
-	public String getItem_sell_point() {
-		return item_sell_point;
-	}
-	/**
-	 * @param item_sell_point the item_sell_point to set
-	 */
-	public void setItem_sell_point(String item_sell_point) {
-		this.item_sell_point = item_sell_point;
-	}
-	/**
-	 * @return the item_price
-	 */
-	public Long getItem_price() {
-		return item_price;
-	}
-	/**
-	 * @param item_price the item_price to set
-	 */
-	public void setItem_price(Long item_price) {
-		this.item_price = item_price;
-	}
-	/**
-	 * @return the item_image
-	 */
-	public String getItem_image() {
-		return item_image;
-	}
-	/**
-	 * @param item_image the item_image to set
-	 */
-	public void setItem_image(String item_image) {
-		this.item_image = item_image;
-	}
-	/**
-	 * @return the item_category_name
-	 */
-	public String getItem_category_name() {
-		return item_category_name;
-	}
-	/**
-	 * @param item_category_name the item_category_name to set
-	 */
-	public void setItem_category_name(String item_category_name) {
-		this.item_category_name = item_category_name;
-	}
-	/**
-	 * @return the item_des
-	 */
-	public String getItem_des() {
-		return item_des;
-	}
-	/**
-	 * @param item_des the item_des to set
-	 */
-	public void setItem_des(String item_des) {
-		this.item_des = item_des;
-	}
-	
+    private String id;
+    private String title;
+    private String sell_point;
+    private Long price;
+    private String image;
+    private String category_name;
+    private String item_des;
+
+  
+    
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+
+    /**
+     * @return the sell_point
+     */
+    public String getSell_point() {
+        return sell_point;
+    }
+
+
+
+    /**
+     * @param sell_point the sell_point to set
+     */
+    public void setSell_point(String sell_point) {
+        this.sell_point = sell_point;
+    }
+
+
+
+    /**
+     * @return the price
+     */
+    public Long getPrice() {
+        return price;
+    }
+
+
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+
+    /**
+     * @return the category_name
+     */
+    public String getCategory_name() {
+        return category_name;
+    }
+
+
+
+    /**
+     * @param category_name the category_name to set
+     */
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
+
+
+    /**
+     * @return the item_des
+     */
+    public String getItem_des() {
+        return item_des;
+    }
+
+
+
+    /**
+     * @param item_des the item_des to set
+     */
+    public void setItem_des(String item_des) {
+        this.item_des = item_des;
+    }
+
+
+
+    /**
+     * 搜索结果中图片展示不出来，image字段中存储的图片是多张，使用逗号分隔
+     * 
+     * @return
+     */
+    public String[] getImages() {
+        if (null != this.image && !this.image.trim().isEmpty()) {
+            return this.image.split(",");
+        }
+        return null;
+    }
+
 }

@@ -29,10 +29,12 @@ public class SearchController {
         queryString = new String(queryString.getBytes("ISO-8859-1"), "UTF-8");
         // 调用服务层并取得taotaosearch
         SearchResult searchResult = searchService.search(queryString, pages, rows);
-        // 添加返回值至jsp
-        model.addAttribute("itemList", searchResult.getItemList());
-        model.addAttribute("totalPages", searchResult.getPageCount());
-        model.addAttribute("query", queryString);
+        if (searchResult != null) {
+            // 添加返回值至jsp
+            model.addAttribute("itemList", searchResult.getItemList());
+            model.addAttribute("totalPages", searchResult.getPageCount());
+            model.addAttribute("query", queryString);
+        }
 
         return "search";
     }

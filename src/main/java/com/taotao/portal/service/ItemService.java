@@ -17,4 +17,11 @@ public interface ItemService {
      * @return
      */
     public String getItemDescById(Long itemId);
+
+    /**
+     * 获取商品规格
+     * @param itemId
+     * @return
+     */
+    public String getItemParamById(Long itemId);
 }

@@ -37,6 +37,14 @@ public class ItemController {
             return "";  
         }
         return itemService.getItemDescById(itemId);
-
+    }
+    
+    @RequestMapping(value="/param/{itemId}", produces = MediaType.TEXT_HTML_VALUE+ ";charset=utf-8")
+    @ResponseBody
+    public String getItemDetailsPageParam(@PathVariable Long itemId, Model model){
+        if (null == itemId) {
+            return "";  
+        }
+        return itemService.getItemParamById(itemId);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.taotao.pojo.TaotaoResult;
 import com.taotao.pojo.TbItemDesc;
+import com.taotao.pojo.TbItemParam;
 import com.taotao.portal.pojo.ItemInfo;
 import com.taotao.portal.service.ItemService;
 import com.taotao.util.HttpClientUtils;
@@ -22,6 +23,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Value("${ITEM_DESC_URL}")
     private String ITEM_DESC_URL;
+
+    @Value("${ITEM_PARAM_URL}")
+    private String ITEM_PARAM_URL;
 
     @Override
     public ItemInfo getItemById(Long itemId) {
@@ -66,6 +70,25 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    @Override
+    public String getItemParamById(Long itemId) {
+        try {
+            // 向taotao-rest发出HTTP请求商品描述并得到一个json数据
+            String itemParamJson = HttpClientUtils.doGet(REST_BASE_URL + ITEM_PARAM_URL + itemId);
+            // json数据需要转化成TaotaoResult类型
+            // 需要把Object类型转化成TbItemDesc类型
+            TaotaoResult result = TaotaoResult.formatToPojo(itemParamJson, TbItemParam.class);
+            if (result.getStatus() == 200) {
+                TbItemParam tbItemParam = (TbItemParam) result.getData();
+                return tbItemParam.getParamData();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return null;
     }
 

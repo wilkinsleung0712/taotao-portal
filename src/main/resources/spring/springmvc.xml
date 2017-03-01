@@ -17,4 +17,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/item/**"/>
+            <bean class="com.taotao.portal.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

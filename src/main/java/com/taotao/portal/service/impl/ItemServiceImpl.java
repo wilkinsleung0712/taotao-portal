@@ -21,8 +21,8 @@ public class ItemServiceImpl implements ItemService {
     @Value("${REST_BASE_URL}")
     private String REST_BASE_URL;
 
-    @Value("${ITEM_INFO_URL}")
-    private String ITEM_INFO_URL;
+    @Value("${REST_ITEM_INFO_URL}")
+    private String REST_ITEM_INFO_URL;
 
     @Value("${ITEM_DESC_URL}")
     private String ITEM_DESC_URL;
@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemInfo getItemById(Long itemId) {
         try {
             // 向taotao-rest发出HTTP请求商品基本信息并得到一个json数据
-            String taotaoResultString = HttpClientUtils.doGet(REST_BASE_URL + ITEM_INFO_URL + itemId);
+            String taotaoResultString = HttpClientUtils.doGet(REST_BASE_URL + REST_ITEM_INFO_URL + itemId);
             // 检查得到的Json数据是否为空
             if (!StringUtils.isBlank(taotaoResultString)) {
                 // json数据需要转化成TaotaoResult类型

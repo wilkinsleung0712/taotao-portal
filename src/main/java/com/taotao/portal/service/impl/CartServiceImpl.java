@@ -57,7 +57,7 @@ public class CartServiceImpl implements CartService {
                 cartItem = new CartItem();
                 // 提取商品信息并优化信息以便放入客户cookies
                 TbItem tbItem = (TbItem) result.getData();
-                cartItem.setId(tbItem.getCid());
+                cartItem.setId(tbItem.getId());
                 cartItem.setImage(tbItem.getImage());
                 cartItem.setNum(num);
                 cartItem.setPrice(tbItem.getPrice());
@@ -88,6 +88,31 @@ public class CartServiceImpl implements CartService {
             cartList = JsonUtils.jsonToList(cookiesJson, CartItem.class);
         }
         return cartList;
+    }
+
+    @Override
+    public TaotaoResult removeCartItemFromCart(Long itemId, HttpServletRequest request, HttpServletResponse response) {
+
+        List<CartItem> cartList = getCartItemList(request);
+        // 如果购物车里没有任何东西
+        if (cartList == null || cartList.isEmpty()) {
+            return TaotaoResult.ok();
+        }
+
+        CartItem temp = null;
+
+        for (CartItem cartItem : cartList) {
+            if (cartItem.getId() == itemId) {
+                // 如果购物车里有这款商品
+                temp = cartItem;
+            }
+        }
+        // 如果购物车里没有这款商品
+        cartList.remove(temp);
+        // 更新购物车内容
+        CookieUtils.setCookie(request, response, "TT_CART", JsonUtils.objectToJson(cartList));
+        
+        return TaotaoResult.ok();
     }
 
 }

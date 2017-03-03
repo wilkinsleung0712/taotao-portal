@@ -1,5 +1,7 @@
 package com.taotao.portal.pojo;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class CartItem {
 
     private long id;
@@ -7,6 +9,7 @@ public class CartItem {
     private Integer num;
     private long price;
     private String image;
+    private String[] images;
 
     public long getId() {
         return id;
@@ -46,6 +49,19 @@ public class CartItem {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String[] getImages() {
+        if (images == null) {
+            if (!StringUtils.isBlank(image)) {
+                setImages(image.split(","));
+            }
+        }
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
     }
 
 }

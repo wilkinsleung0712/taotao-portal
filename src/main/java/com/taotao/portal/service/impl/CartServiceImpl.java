@@ -80,7 +80,8 @@ public class CartServiceImpl implements CartService {
      * @param request
      * @return
      */
-    private List<CartItem> getCartItemList(HttpServletRequest request) {
+    @Override
+    public List<CartItem> getCartItemList(HttpServletRequest request) {
         // 根据Request提取cookies内容
         List<CartItem> cartList = new ArrayList<>();
         String cookiesJson = CookieUtils.getCookieValue(request, "TT_CART");
